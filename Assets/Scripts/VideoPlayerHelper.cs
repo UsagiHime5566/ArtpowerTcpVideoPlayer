@@ -36,9 +36,9 @@ public class VideoPlayerHelper : MonoBehaviour
         targetCanvas[1].rectTransform.anchoredPosition = SystemConfig.Instance.GetData<Vector2>("canvas1_pos");
         targetCanvas[2].rectTransform.anchoredPosition = SystemConfig.Instance.GetData<Vector2>("canvas2_pos");
 
-        targetDisplay[0].targetDisplay = SystemConfig.Instance.GetData<int>("monitor0_dp");
-        targetDisplay[1].targetDisplay = SystemConfig.Instance.GetData<int>("monitor1_dp");
-        targetDisplay[2].targetDisplay = SystemConfig.Instance.GetData<int>("monitor2_dp");
+        targetDisplay[0].targetDisplay = SystemConfig.Instance.GetData<int>("monitor0_dp", 0);
+        targetDisplay[1].targetDisplay = SystemConfig.Instance.GetData<int>("monitor1_dp", 1);
+        targetDisplay[2].targetDisplay = SystemConfig.Instance.GetData<int>("monitor2_dp", 2);
     }
 
     void Update() {

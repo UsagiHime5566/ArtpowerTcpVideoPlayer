@@ -33,6 +33,15 @@ public class SignalPlayer : MonoBehaviour
         signalClient.OnSignalReceived.AddListener(SignalRecieved);
     }
 
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.F5)){
+            if(videoPlayer.isPrepared){
+                videoPlayer.time = 0;
+                videoPlayer.Play();
+            }
+        }
+    }
+
     void SetupVideo(string filePath){
         videoPlayer.url = filePath;
         videoPlayer.Prepare();
