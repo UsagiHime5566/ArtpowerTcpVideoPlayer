@@ -18,8 +18,8 @@ public static class SystemConfigExtend
         }
     }
 
-    public static int SetSavedData(this Dropdown dd, string savedString, Action<int> changedToDo){
-        int id = SystemConfig.Instance.GetData<int>(savedString);
+    public static int SetSavedData(this Dropdown dd, string savedString, int defValue, Action<int> changedToDo){
+        int id = SystemConfig.Instance.GetData<int>(savedString, defValue);
         dd.value = id;
         dd.captionText.text = dd.options[dd.value].text;
 

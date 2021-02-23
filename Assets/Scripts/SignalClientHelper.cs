@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 [RequireComponent(typeof(SignalClient))]
 public class SignalClientHelper : MonoBehaviour
 {
+    [HimeLib.HelpBox] public string tip = "負責讀入txt, 藉此設定Clinet 相關設定";
     public string fileName = "Loader.txt";
     public System.Action<string> OnVideoPathReady;
     

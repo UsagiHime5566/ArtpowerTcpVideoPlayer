@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(SignalClientHelper))]
 public class VideoPlayerTip : MonoBehaviour
 {
-    public Text TXT_Target;
+    public Text [] TXT_Targets;
     public string TipContent = "請將設定資訊檔({0})放置於專案目錄內";
     
 
@@ -15,6 +15,10 @@ public class VideoPlayerTip : MonoBehaviour
     void Start()
     {
         signalClientHelper = GetComponent<SignalClientHelper>();
-        TXT_Target.text = string.Format(TipContent, signalClientHelper.fileName);
+
+        foreach (var item in TXT_Targets)
+        {
+            item.text = string.Format(TipContent, signalClientHelper.fileName);
+        }
     }
 }
