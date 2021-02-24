@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 294308937}
   - component: {fileID: 294308936}
   m_Layer: 5
-  m_Name: Text monitor
+  m_Name: Text Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,7 +526,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Monitor 1
+  m_Text: Image 1
 --- !u!222 &294308937
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: 743626487}
   - component: {fileID: 743626486}
   m_Layer: 5
-  m_Name: Text monitor (1)
+  m_Name: Text Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,7 +1177,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Monitor 2
+  m_Text: Image 2
 --- !u!222 &743626487
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 815091263}
   - component: {fileID: 815091262}
   m_Layer: 5
-  m_Name: Text monitor (2)
+  m_Name: Text Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,7 +1399,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Monitor 3
+  m_Text: Image 3
 --- !u!222 &815091263
 CanvasRenderer:
   m_ObjectHideFlags: 0
