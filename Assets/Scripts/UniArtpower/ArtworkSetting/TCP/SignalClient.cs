@@ -23,10 +23,8 @@ public class SignalClient : HimeLib.SingletonMono<SignalClient> {
 
 
 
-	TcpClient tcp_socket;
-	NetworkStream net_stream;
-	StreamWriter socket_writer;
-	StreamReader socket_reader;
+	TcpClient tcpSocket;
+	NetworkStream netStream;
     string [] token;
 	Thread connectThread;
     Action ActionQueue;
@@ -54,14 +52,14 @@ public class SignalClient : HimeLib.SingletonMono<SignalClient> {
 	public async void InitSocket()
 	{
         bool connect = false;
+
         await Task.Run(delegate {
             try
             {
-                tcp_socket = new TcpClient(serverIP, serverPort);
+                tcpSocket = new TcpClient(serverIP, serverPort);
+                tcpSocket.ReceiveBufferSize = recvBufferSize;
 
-                net_stream = tcp_socket.GetStream();
-                socket_writer = new StreamWriter(net_stream);
-                socket_reader = new StreamReader(net_stream);
+                netStream = tcpSocket.GetStream();
 
                 connect = true;
             }
@@ -89,15 +87,14 @@ public class SignalClient : HimeLib.SingletonMono<SignalClient> {
 	void ClientWork()
 	{
 		while (true) {
-			Thread.Sleep (20);
-
-            byte[] data = new byte[recvBufferSize];
+            
+            byte[] data = new byte[tcpSocket.ReceiveBufferSize];
             int bytes = 0;
             
             try
             {
                 // *** networkStream.Read will let programe get Stuck ***
-                bytes = net_stream.Read(data, 0, data.Length);
+                bytes = netStream.Read(data, 0, (int)tcpSocket.ReceiveBufferSize);
             }
             catch (System.IO.IOException)
             {
@@ -135,10 +132,13 @@ public class SignalClient : HimeLib.SingletonMono<SignalClient> {
 
 	public void SocketSend(string sendStr)
 	{
+        if(!netStream.CanWrite)
+            return;
+
         try {
-            sendStr = sendStr + EndToken;
-            socket_writer.Write(sendStr);
-            socket_writer.Flush();
+            string toSend = sendStr + EndToken;
+            byte[] sendData = System.Text.Encoding.UTF8.GetBytes(toSend);
+            netStream.Write(sendData, 0, sendData.Length);
 
             Debug.Log ($"TCP >> Send: {sendStr}");
         }
@@ -155,10 +155,8 @@ public class SignalClient : HimeLib.SingletonMono<SignalClient> {
 			connectThread.Abort ();
         }
 
-		socket_writer?.Close();
-		socket_reader?.Close();
-        net_stream?.Close();
-		tcp_socket?.Close();
+        netStream?.Close();
+		tcpSocket?.Close();
 
         print("diconnect.");
 	}
