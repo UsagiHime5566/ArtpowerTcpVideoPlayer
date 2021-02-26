@@ -9,8 +9,10 @@ public class SignalPlayer : MonoBehaviour
 {
     [HimeLib.HelpBox] public string tip = "使用 Client 訊號控制、設定影片撥放";
     public VideoPlayer videoPlayer;
-    public string RecvSignalToPlay;
-    public string SendSignalOnEnd;
+    public string RecvSignalToPlay = "Play";
+    public string RecvSignalToPause = "Pause";
+    public string RecvSignalToResume = "Resume";
+    public string SendSignalOnEnd = "End";
     
 
     [Header("Auto Work")]
@@ -62,6 +64,12 @@ public class SignalPlayer : MonoBehaviour
     void SignalRecieved(string val){
         if(val == RecvSignalToPlay){
             videoPlayer.time = 0;
+            videoPlayer.Play();
+        }
+        if(val == RecvSignalToPause){
+            videoPlayer.Pause();
+        }
+        if(val == RecvSignalToResume){
             videoPlayer.Play();
         }
     }
